@@ -15,6 +15,7 @@ import java.util.Optional;
 // ClientService обратится к ClientRepository, после добавления обратится к ClientController  и ответит ему "добавил"
 @Service // spring создаст объект этого сервиса и положит себе в контейнер
 public class ClientService {
+
     private ClientRepository repository;
     public ClientRepository getRepository() {
         return repository;
