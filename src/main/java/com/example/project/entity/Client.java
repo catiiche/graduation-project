@@ -1,23 +1,18 @@
 package com.example.project.entity;
 
-
-//import org.springframework.data.annotation.Id;
-
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 
 @Entity
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int passportId;
+    protected Long passportId;
 
     @Column(length = 50, nullable = false)
-    //@NaturalId //Hibernate будет поддерживать сопоставление натуральных идентификаторов с первичными ключами
     private String name;
-    @Column(length = 50, nullable = false)
+
+    @Column(length = 3, nullable = false)
     private int age;
+
     @Column(length = 50, nullable = false)
     private String city;
 
@@ -26,14 +21,10 @@ public class Client {
     private boolean creditHistory;
     private boolean status;
 
-//    public Client(int passportId) {
-//        this.passportId = passportId;
-//    }
-
     public Client() {
     }
 
-    public Client(int passportId, String name, int age, String city, int countOfChildren, int salary, boolean creditHistory) {
+    public Client(Long passportId, String name, int age, String city, int countOfChildren, int salary, boolean creditHistory) {
         setPassportId(passportId);
         setName(name);
         setAge(age);
@@ -43,13 +34,13 @@ public class Client {
         setCreditHistory(creditHistory);
     }
 
-    public int getPassportId() {
+    public Long getPassportId() {
         return passportId;
     }
 
-    public void setPassportId(int passportId) {
-        if (passportId < 10)
-            throw new IllegalArgumentException("passportId должен быть не меньше 10");
+    public void setPassportId(Long passportId) {
+        if (passportId < 1000000000)
+            throw new IllegalArgumentException("passportId должен быть не меньше 1000 000 000");
         this.passportId = passportId;
     }
 

@@ -17,6 +17,7 @@ import java.util.Optional;
 public class ClientService {
 
     private ClientRepository repository;
+
     public ClientRepository getRepository() {
         return repository;
     }
@@ -55,13 +56,13 @@ public class ClientService {
         return clientPage;
     }
 
-    public Optional<Client> getById(int id) {
+    public Optional<Client> getById(Long id) {
         Optional<Client> optionalClient = repository.findById(id);
         if (optionalClient.isEmpty()) throw new ClientException("Запись не существует");
         return optionalClient;
     }
 
-    public void delete(int id) {
+    public void delete(Long id) {
         if (!repository.existsById(id)) throw new ClientException("Запись не существует");
         repository.deleteById(id);
     }

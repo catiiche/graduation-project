@@ -12,7 +12,7 @@ public abstract class Client_ {
 	public static volatile SingularAttribute<Client, String> name;
 	public static volatile SingularAttribute<Client, Integer> countOfChildren;
 	public static volatile SingularAttribute<Client, Integer> salary;
-	public static volatile SingularAttribute<Client, Integer> passportId;
+	public static volatile SingularAttribute<Client, Long> passportId;
 	public static volatile SingularAttribute<Client, Integer> age;
 	public static volatile SingularAttribute<Client, Boolean> creditHistory;
 	public static volatile SingularAttribute<Client, Boolean> status;

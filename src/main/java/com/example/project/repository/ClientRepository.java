@@ -13,7 +13,7 @@ import java.util.List;
 // для реализации функциаонала получения / добавления / удаления клиента в базе
 // работает с сущностями Объекты <Client, Integer> - Integer - уникальный идентификатор
 // CrudeRepository не подойдет т.к нет возможности получать записи частями
-public interface ClientRepository extends PagingAndSortingRepository<Client, Integer> {
+public interface ClientRepository extends PagingAndSortingRepository<Client, Long> {
     @Query(value = "SELECT c FROM Client c WHERE UPPER(c.name) LIKE %:clientName%")
         // в jpquery используются название сущностей(не столбцов/полей таблицы)
         // : - обозначает, что дальше будет имя параметра

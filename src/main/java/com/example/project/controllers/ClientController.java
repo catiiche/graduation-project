@@ -7,18 +7,18 @@ import com.example.project.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 /*
-{
-"passportId": 11,
-    "name": "java kjhkg",
+{"passportId": 1000000001,
+    "name": "Kate",
     "age": 27,
     "city": "Smolensk",
-    "countOfChildren": 2,
-    "salary": 45,
+    "countOfChildren": 0,
+    "salary": 45000,
     "creditHistory": "true"
  }
 
@@ -30,6 +30,9 @@ import java.util.Optional;
 // наш ClientController будет обрабатывать все запросы, которые связаны с клиентом
 @RestController // обрабатывает запрос и возвращает json строчку в ответ, собирает ее сам
 // экземпляр данного класса будет создан и добавлен в контейнер spring
+
+//@Controller  для html страничек
+
 @RequestMapping("/clients") // все запросы идущие на clients будут обрабатываться данным контроллером //http://localhost/clients
 public class ClientController {
     @Autowired
@@ -39,7 +42,7 @@ public class ClientController {
     @GetMapping("/{id}") // метод среагирует на GET запрос, у которого в строке запроса еще передается id
     //@PathVariable  чтобы получить значение из строки запроса
     // если в json строчке должен быть 1 объект, то метод должен возвращать Optional
-    public Client getPassportId(@PathVariable int id) {
+    public Client getPassportId(@PathVariable Long id) { // int
         Optional<Client> optionalClient;
         try {
             optionalClient = service.getById(id);
@@ -51,10 +54,11 @@ public class ClientController {
 
 
     // клиентская сторона будет получать по 10 записей
-    // page = 1 - это первый десяток записей
+    // page = 0 - это первый десяток записей
     // @RequestParam - используется если передача данных идет в строке через знак вопроса
     // @RequestBody  данные передаются в теле сообщения
-    @GetMapping // http://localhost/clients?page=5&size=10
+    @GetMapping
+    // http://localhost/clients?page=0&size=10
     // Page - информация сколько еще осталось записей
     public Page<Client> getAll(@RequestParam int page, @RequestParam int size) {
         Page<Client> clientPage;
@@ -75,7 +79,11 @@ public class ClientController {
     @PostMapping // будет реагировать на POST запрос
     // если информация внутри тела сообщения, оттуда ее достаем через @RequestBody
     // Spring используя библиотеку вытащит информацию из тела сообщения и преобразует ее в объект
+
+
+    // @ModelAttribute если видит в поступающем запросе значения - назначает их
     public Client addClient(@RequestBody Client client) {
+        // добавить валидацию
         Client saved;
         try {
             saved = service.add(client);
@@ -96,8 +104,8 @@ public class ClientController {
         return updated;
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable int id) {
+    @DeleteMapping("/{id}") //{} - сможем получить параметры. Если не отправить параметр - будет ошибка "Неправильная строка запроса"
+    public void deleteById(@PathVariable Long id) {
         try {
             service.delete(id);
         } catch (ClientException e) {
