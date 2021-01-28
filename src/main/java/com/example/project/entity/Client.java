@@ -69,8 +69,8 @@ public class Client {
     }
 
     public void setName(String name) {
-        if (name == null || name.length() < 4)
-            throw new IllegalArgumentException("name должен быть не меньше 4");
+        if (name == null || name.length() < 3)
+            throw new IllegalArgumentException("name должен быть не меньше 3");
         this.name = name;
     }
 

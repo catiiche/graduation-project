@@ -58,6 +58,7 @@
                     '        <th>Client children</th>\n' +
                     '        <th>Client salary</th>\n' +
                     '        <th>Client credit</th>\n' +
+                    '        <th>Client status</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
             for(var i =0; i<clients.length; i++) {
@@ -70,6 +71,7 @@
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
+                    '        <td>' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
             }
                 document.getElementById("clientsList").innerHTML = html;
@@ -101,6 +103,7 @@
                     '        <th>Client children</th>\n' +
                     '        <th>Client salary</th>\n' +
                     '        <th>Client credit</th>\n' +
+                    '        <th>Client status</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
             for(var i =0; i<clients.length; i++) {
@@ -113,6 +116,7 @@
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
+                    '        <td>' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
             }
                 document.getElementById("clientsList").innerHTML = html;
@@ -195,6 +199,7 @@ xhttp.send();
                     '        <th>Client children</th>\n' +
                     '        <th>Client salary</th>\n' +
                     '        <th>Client credit</th>\n' +
+                    '        <th>Client status</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
                 html = html + '<tr><td>' + client.passportId + '</td>\n' +
@@ -205,6 +210,7 @@ xhttp.send();
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
+                    '        <td>' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
 
                 document.getElementById("clientsList").innerHTML = html;

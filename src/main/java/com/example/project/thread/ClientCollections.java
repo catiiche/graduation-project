@@ -9,6 +9,10 @@ import java.util.List;
 public class ClientCollections {
     List<Client> approvedClients = new ArrayList<>();
 
+    public List<Client> getApprovedClients() {
+        return approvedClients;
+    }
+
     public void createClients() {
         Client client = new Client(1237897891L, "Ivan", "Ivanov", 45, "Smolensk",
                 4, 45000, true);
@@ -31,7 +35,7 @@ public class ClientCollections {
         approvedClients.add(client3);
 
         Client client4 = new Client(1289607091L, "Alexandra", "Ivanova", 40, "Moscow",
-                0, 78000, false);
+                0, 18000, false);
         client4.setStatus(true);
         approvedClients.add(client4);
 
@@ -41,7 +45,7 @@ public class ClientCollections {
         approvedClients.add(client5);
 
         Client client6 = new Client(1030587800L, "Maxim", "Severyanov", 38, "Saint-Petersburg",
-                1, 60000, false);
+                1, 30000, false);
         client6.setStatus(true);
         approvedClients.add(client6);
 
