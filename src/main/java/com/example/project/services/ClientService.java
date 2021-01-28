@@ -4,23 +4,22 @@ import com.example.project.entity.Client;
 import com.example.project.exception.ClientException;
 import com.example.project.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.util.Objects.isNull;
+
 
 // служебный класс
 // ClientService обратится к ClientRepository, после добавления обратится к ClientController  и ответит ему "добавил"
 @Service // spring создаст объект этого сервиса и положит себе в контейнер
-public class ClientService {
+public class ClientService implements IClientService {
 
-    private ClientRepository repository;
-
-    public ClientRepository getRepository() {
-        return repository;
-    }
+    private final ClientRepository repository;
 
     @Autowired // инъекция зависимостей - spring установит в зависимости все, что установленно в данном конструкторе
     public ClientService(ClientRepository repository) {
@@ -28,42 +27,53 @@ public class ClientService {
     }
 
     // методами, перечисленными ниже будет пользоваться контроллер
-    // ВАЛИДАЦИЯ
 
-    // если запись не найдена  - вернется null
-    public Client add(Client client) {
-        if (repository.existsById(client.getPassportId()) ||
-                repository.findByName(client.getName().toUpperCase()) != null) {
-            throw new ClientException("Запись уже существует");
+    private void validateClient(Client client) throws ClientException {
+        if (isNull(client)) {
+            throw new ClientException("Object client is null");
         }
-        return repository.save(client);
-    }
-
-    // обновление записи
-    public Client update(Client client) {
-        if (!repository.existsById(client.getPassportId())) {
-            throw new ClientException("Запись не существует");
+        if (isNull(client.getSurname()) || client.getSurname().isEmpty()) {
+            throw new ClientException("Surname is empty");
         }
-        return repository.save(client);
     }
 
-    public Page<Client> getByPage(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size); // объект выборки, внутри себя хранит страницу и размер
-        Page<Client> clientPage = repository.findAll(pageable);
-        if (clientPage.getContent().isEmpty()) {
-            throw new ClientException("Записи не были найдены");
-        }
-        return clientPage;
+    @Override
+    public Client saveClient(Client client) throws ClientException {
+        validateClient(client);
+        Client savedClient = repository.save(client);
+        return savedClient;
     }
 
-    public Optional<Client> getById(Long id) {
-        Optional<Client> optionalClient = repository.findById(id);
-        if (optionalClient.isEmpty()) throw new ClientException("Запись не существует");
-        return optionalClient;
+    @Override
+    public void deleteClient(Long passportID) {
+        repository.deleteById(passportID);
     }
 
-    public void delete(Long id) {
-        if (!repository.existsById(id)) throw new ClientException("Запись не существует");
-        repository.deleteById(id);
+    @Override
+    public List<Client> findBySurname(String surname) {
+        List<Client> clients = repository.findBySurname(surname);
+        if (clients == null || clients.isEmpty()) throw new ClientException("Запись не существует");
+        return clients;
+    }
+
+    public Optional<Client> findById(Long passportId) {
+        Optional<Client> client = repository.findById(passportId);
+        if (client == null) throw new ClientException("Запись не существует");
+        return client;
+    }
+
+
+    @Override
+    public List<Client> findByCity(String city) {
+        List<Client> clients = repository.findByCity(city);
+        if (clients == null || clients.isEmpty()) throw new ClientException("Запись не существует");
+        return clients;
+    }
+
+    @Override
+    public List<Client> findAll() {
+        return repository.findAll().stream().collect(Collectors.toList());
     }
 }
+
+

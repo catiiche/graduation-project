@@ -9,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Client_ {
 
 	public static volatile SingularAttribute<Client, String> city;
+	public static volatile SingularAttribute<Client, String> surname;
 	public static volatile SingularAttribute<Client, String> name;
 	public static volatile SingularAttribute<Client, Integer> countOfChildren;
 	public static volatile SingularAttribute<Client, Integer> salary;
@@ -18,6 +19,7 @@ public abstract class Client_ {
 	public static volatile SingularAttribute<Client, Boolean> status;
 
 	public static final String CITY = "city";
+	public static final String SURNAME = "surname";
 	public static final String NAME = "name";
 	public static final String COUNT_OF_CHILDREN = "countOfChildren";
 	public static final String SALARY = "salary";

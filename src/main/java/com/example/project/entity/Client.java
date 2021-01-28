@@ -1,32 +1,52 @@
 package com.example.project.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
-@Entity
+// Модель ?
+// хранит в себе данные
+// Взаимодействует с БД для получения данных
+// Отдает данные контроллеру
+
+@Entity // для сопоставления этого класса с таблицей client
 public class Client {
     @Id
     protected Long passportId;
 
     @Column(length = 50, nullable = false)
+
+    // аннотации для валидации форм
+    @NotEmpty(message = "name must not be empty")
+    @Size(min = 4, max = 30, message = "name must be between 4 and 30 characters")
     private String name;
 
+    @Column(length = 50, nullable = false)
+    private String surname;
+
     @Column(length = 3, nullable = false)
+    @Min(value = 18, message = "age must not be less than 18")
     private int age;
 
     @Column(length = 50, nullable = false)
     private String city;
 
+    @Column
     private int countOfChildren;
+    @Column
     private int salary;
+    @Column
     private boolean creditHistory;
     private boolean status;
 
     public Client() {
     }
 
-    public Client(Long passportId, String name, int age, String city, int countOfChildren, int salary, boolean creditHistory) {
+    public Client(Long passportId, String name, String surname, int age, String city, int countOfChildren, int salary, boolean creditHistory) {
         setPassportId(passportId);
         setName(name);
+        setSurname(surname);
         setAge(age);
         setCity(city);
         setCountOfChildren(countOfChildren);
@@ -52,6 +72,16 @@ public class Client {
         if (name == null || name.length() < 4)
             throw new IllegalArgumentException("name должен быть не меньше 4");
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        if (surname == null || surname.length() < 4)
+            throw new IllegalArgumentException("surname должен быть не меньше 4");
+        this.surname = surname;
     }
 
     public int getAge() {

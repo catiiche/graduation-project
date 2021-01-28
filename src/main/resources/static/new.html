@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new client</title>
+</head>
+<body>
+<table id="clientsList">
+<form action="#">
+<!--<form th:method="POST" th:action="@{/clients}" th:object="${client}">-->
+    <input id="passport_id" placeholder="Passport id">
+    <input id="client_name" placeholder="Client name">
+    <input id="client_surname" placeholder="Client surname">
+    <input id="client_age" placeholder="Age">
+    <input id="client_city" placeholder="City">
+    <input id="count_of_children" placeholder="Count of children">
+    <input id="client_salary" placeholder="Salary">
+    <input id="credit_history" placeholder="Credit History">
+    <br/>
+    <button onclick="createClient()">Create client</button>
+</form>
+<script>
+function createClient() {
+var passportId = document.getElementById("passport_id").value;
+var clientName = document.getElementById("client_name").value;
+var clientSurname = document.getElementById("client_surname").value;
+var clientAge = document.getElementById("client_age").value;
+var clientCity = document.getElementById("client_city").value;
+var clientChildren = document.getElementById("count_of_children").value;
+var clientSalary = document.getElementById("client_salary").value;
+var clientCredit = document.getElementById("credit_history").value;
+
+var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+xmlhttp.open("POST", "http://localhost:8080/clients/save");
+xmlhttp.setRequestHeader("Content-Type", "application/json");
+xmlhttp.send(JSON.stringify({passportId: passportId, name: clientName, surname: clientSurname, age: clientAge, city: clientCity, countOfChildren: clientChildren, salary: clientSalary, creditHistory: clientCredit}));
+
+<!--loadClients();-->
+}
+
+<!--function loadClients() {-->
+<!--var xhttp = new XMLHttpRequest();-->
+<!--xhttp.onreadystatechange = function () {-->
+<!--if (this.readyState == 4 && this.status == 200) {-->
+<!--var clients = JSON.parse(this.responseText);-->
+<!--var html = '<tr>\n' +-->
+<!--    '        <th>Client id</th>\n' +-->
+<!--    '        <th>Client name</th>\n' +-->
+<!--    '        <th>Client surname</th>\n' +-->
+<!--    '        <th>Client age</th>\n' +-->
+<!--    '        <th>Client city</th>\n' +-->
+<!--    '        <th>Client children</th>\n' +-->
+<!--    '        <th>Client salary</th>\n' +-->
+<!--    '        <th>Client credit</th>\n' +-->
+<!--    '        <th>Delete</th>\n' +-->
+<!--    '    </tr>';-->
+<!--for (var i = 0; i < clients.length; i++) {-->
+<!--var client = clients[i];-->
+<!--console.log(client);-->
+<!--html = html + '<tr><td>' + client.passportId + '</td>\n' +-->
+<!--    '        <td>' + client.name + '</td>\n' +-->
+<!--    '        <td>' + client.surname + '</td>\n' +-->
+<!--    '        <td>' + client.age + '</td>' +-->
+<!--    '        <td>' + client.city + '</td>' +-->
+<!--    '        <td>' + client.countOfChildren + '</td>' +-->
+<!--    '        <td>' + client.salary + '</td>' +-->
+<!--    '        <td>' + client.creditHistory + '</td>' +-->
+<!--    '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';-->
+
+<!--}-->
+<!--document.getElementById("clientsList").innerHTML = html;-->
+<!--}-->
+<!--};-->
+<!--xhttp.open("GET", "http://localhost:8080/clients/findAll", true);-->
+<!--xhttp.send();-->
+<!--}-->
+
+<!--loadClients();-->
+
+</script>
+</body>
+</html>
