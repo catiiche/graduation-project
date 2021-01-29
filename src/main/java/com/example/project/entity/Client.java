@@ -19,7 +19,7 @@ public class Client {
 
     // аннотации для валидации форм
     @NotEmpty(message = "name must not be empty")
-    @Size(min = 4, max = 30, message = "name must be between 4 and 30 characters")
+    @Size(min = 3, max = 30, message = "name must be between 4 and 30 characters")
     private String name;
 
     @Column(length = 50, nullable = false)

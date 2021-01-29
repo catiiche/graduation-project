@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Create new client</title>
 </head>
-<body>
 <table id="clientsList">
+</table>
 <form action="#">
-<!--<form th:method="POST" th:action="@{/clients}" th:object="${client}">-->
+    <!--<form th:method="POST" th:action="@{/clients}" th:object="${client}">-->
     <input id="passport_id" placeholder="Passport id">
     <input id="client_name" placeholder="Client name">
     <input id="client_surname" placeholder="Client surname">
@@ -18,6 +18,10 @@
     <input id="credit_history" placeholder="Credit History">
     <br/>
     <button onclick="createClient()">Create client</button>
+    <br/>
+    <span id="status"></span></p>
+
+
 </form>
 <script>
 function createClient() {
@@ -33,11 +37,21 @@ var clientCredit = document.getElementById("credit_history").value;
 var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
 xmlhttp.open("POST", "http://localhost:8080/clients/save");
 xmlhttp.setRequestHeader("Content-Type", "application/json");
-xmlhttp.send(JSON.stringify({passportId: passportId, name: clientName, surname: clientSurname, age: clientAge, city: clientCity, countOfChildren: clientChildren, salary: clientSalary, creditHistory: clientCredit}));
-
-<!--loadClients();-->
+xmlhttp.send(JSON.stringify({passportId: passportId, name: clientName, surname: clientSurname, age: clientAge,
+city: clientCity, countOfChildren: clientChildren, salary: clientSalary, creditHistory: clientCredit}));
+updateClients(xmlhttp);
 }
 
+function updateClients(xmlhttp) {
+alert("Error");
+
+<!--    var status = document.getElementById("status");-->
+<!--    if(xmlhttp.readyState == 4 && xhttp.status == 200) status.innerHTML = "Update";-->
+<!--    else status.innerHTML = "NotUpdate";-->
+
+}
+
+<!--loadClients();-->
 <!--function loadClients() {-->
 <!--var xhttp = new XMLHttpRequest();-->
 <!--xhttp.onreadystatechange = function () {-->
@@ -76,6 +90,9 @@ xmlhttp.send(JSON.stringify({passportId: passportId, name: clientName, surname: 
 <!--}-->
 
 <!--loadClients();-->
+
+
+
 
 </script>
 </body>

@@ -19,10 +19,6 @@
         }
 
 
-
-
-
-
     </style>
 </head>
 <body>
@@ -34,7 +30,7 @@
 </table>
 
 <form action="#">
-    <a href="/home/catiiche/Документы/JavaITMO/graduation-project/src/main/resources/static/new.html">
+    <a href="/home/catiiche/Документы/JavaITMO/graduation-project/src/main/resources/static/new.html?#">
         Create new client</a>
 
 </form>
@@ -71,7 +67,7 @@
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
-                    '        <td>' + client.status + '</td>' +
+                    '        <td bgcolor="#008000">' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
             }
                 document.getElementById("clientsList").innerHTML = html;
@@ -116,7 +112,7 @@
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
-                    '        <td>' + client.status + '</td>' +
+                    '        <td bgcolor="#008000">' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
             }
                 document.getElementById("clientsList").innerHTML = html;
@@ -210,7 +206,7 @@ xhttp.send();
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
-                    '        <td>' + client.status + '</td>' +
+                    '        <td bgcolor="#008000">' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
 
                 document.getElementById("clientsList").innerHTML = html;

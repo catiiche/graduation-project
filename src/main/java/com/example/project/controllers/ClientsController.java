@@ -1,6 +1,5 @@
 package com.example.project.controllers;
 
-
 import com.example.project.entity.Client;
 import com.example.project.exception.ClientException;
 import com.example.project.services.ClientService;
@@ -13,47 +12,23 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
-import static java.util.Map.Entry.comparingByValue;
-/*
-http://localhost:8080/clients/save
-{
-    "passportId": 1000000001,
-    "name": "Kate",
-    "surname": "Shkuratova",
-    "age": 27,
-    "city": "Smolensk",
-    "countOfChildren": 0,
-    "salary": 45000,
-    "creditHistory": "true"
-}
-
-
+/**
+ * class ClientsController
+ * responsible for navigation and processing requests
+ * respond to a specific client request
+ *
+ * @author Kate Shkuratova
+ * @version 1.0
+ * @see ClientService
  */
-//класс получает информацию из запроса и отдает ответ
-//возьмет клиента и отдаст его в ClientService
 
-// класс, который будет реагировать на конкретый запрос клиента
-// наш ClientController будет обрабатывать все запросы, которые связаны с клиентом
-//@RestController // обрабатывает запрос и возвращает json строчку в ответ, собирает ее сам
-// экземпляр данного класса будет создан и добавлен в контейнер spring
-
-// этот класс отвечает за навигацию и обработку запросов
-
-//т.е. класс обрабатывает запрос от пользователя
-// обменивается данными с моделью
-// показывает пользователю правильное представление
-// переадресовывает пользователя на другие страницы
-// В контроллере не должно содержаться никакой логики по работе с сущностями. Вся логика сосредоточена в сервисном слое.
-// Поэтому, в контроллере мы просто вызываем методы из сервиса и перебрасываем ответы на клиент
-
-
-// все запросы идущие на clients будут обрабатываться данным контроллером //http://localhost/clients
-@RestController //  Controller  для html страничек
+@RestController
 @RequestMapping("/clients") // URL адреса всех методов будут обязательно иметь в себе /clients в начале
 @CrossOrigin
 public class ClientsController {
     @Autowired
     private final ClientService service;
+
     private ClientCollections clientsList = new ClientCollections();
     private static final int K = 6;
 
