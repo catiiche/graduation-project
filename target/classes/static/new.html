@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Create new client</title>
 </head>
-<body>
 <table id="clientsList">
 </table>
 <form action="#">
@@ -19,6 +18,9 @@
     <input id="credit_history" placeholder="Credit History">
     <br/>
     <button onclick="createClient()">Create client</button>
+    <br/>
+    <span id="status"></span></p>
+
 
 </form>
 <script>
@@ -37,12 +39,19 @@ xmlhttp.open("POST", "http://localhost:8080/clients/save");
 xmlhttp.setRequestHeader("Content-Type", "application/json");
 xmlhttp.send(JSON.stringify({passportId: passportId, name: clientName, surname: clientSurname, age: clientAge,
 city: clientCity, countOfChildren: clientChildren, salary: clientSalary, creditHistory: clientCredit}));
-
-
-
-<!--loadClients();-->
+updateClients(xmlhttp);
 }
 
+function updateClients(xmlhttp) {
+alert("Error");
+
+<!--    var status = document.getElementById("status");-->
+<!--    if(xmlhttp.readyState == 4 && xhttp.status == 200) status.innerHTML = "Update";-->
+<!--    else status.innerHTML = "NotUpdate";-->
+
+}
+
+<!--loadClients();-->
 <!--function loadClients() {-->
 <!--var xhttp = new XMLHttpRequest();-->
 <!--xhttp.onreadystatechange = function () {-->
@@ -81,6 +90,8 @@ city: clientCity, countOfChildren: clientChildren, salary: clientSalary, creditH
 <!--}-->
 
 <!--loadClients();-->
+
+
 
 
 </script>

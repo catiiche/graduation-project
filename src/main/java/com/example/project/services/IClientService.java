@@ -5,6 +5,13 @@ import com.example.project.exception.ClientException;
 
 import java.util.List;
 
+/**
+ * interface IClientService
+ * <p>
+ * * @author Kate Shkuratova
+ *
+ * @version 1.0
+ */
 public interface IClientService {
     Client saveClient(Client client) throws ClientException;
 

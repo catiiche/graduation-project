@@ -5,16 +5,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * interface ClientRepository
+ * Spring creates a class and describes all methods from this repository
+ *
+ * @author Kate Shkuratova
+ * @version 1.0
+ */
 
-// Spring создает класс и прописывает реализацию всех методов из репозитория и прописанных вручную,
-// потом создает объект
 
-// CrudeRepository не подойдет т.к нет возможности получать записи частями
-// JpaRepository расширяет PagingAndSortingRepository // чтобы можно было получать записи частями
+// JpaRepository расширяет PagingAndSortingRepository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
     List<Client> findBySurname(String surname);
 
-    List<Client>findByCity(String city);
-
+    List<Client> findByCity(String city);
 }

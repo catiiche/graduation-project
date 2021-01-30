@@ -1,11 +1,17 @@
 package com.example.project.thread;
 
-
 import com.example.project.entity.Client;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class ClientCollections
+ * training set of clients
+ *
+ * @author Kate Shkuratova
+ * @version 1.0
+ */
 public class ClientCollections {
     List<Client> approvedClients = new ArrayList<>();
 

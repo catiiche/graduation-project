@@ -1,16 +1,21 @@
 package com.example.project.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-// Модель ?
-// хранит в себе данные
-// Взаимодействует с БД для получения данных
-// Отдает данные контроллеру
+/**
+ * class Client
+ * contains client's data
+ *
+ * @author Kate Shkuratova
+ * @version 1.0
+ */
 
-@Entity // для сопоставления этого класса с таблицей client
+@Entity
 public class Client {
     @Id
     protected Long passportId;
@@ -60,7 +65,7 @@ public class Client {
 
     public void setPassportId(Long passportId) {
         if (passportId < 1000000000)
-            throw new IllegalArgumentException("passportId должен быть не меньше 1000 000 000");
+            throw new IllegalArgumentException("passportId должен быть не меньше 1000_000_000");
         this.passportId = passportId;
     }
 

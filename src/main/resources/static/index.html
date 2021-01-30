@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <style>
         table {
             font-family: arial, sans-serif;
@@ -70,6 +71,7 @@
                     '        <td bgcolor="#008000">' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
             }
+
                 document.getElementById("clientsList").innerHTML = html;
             }
         };
@@ -210,7 +212,7 @@ xhttp.send();
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
 
                 document.getElementById("clientsList").innerHTML = html;
-            }
+            } else {alert("Error");}
         };
         xhttp.open("GET", "http://localhost:8080/clients/findById?passportId=" + passportId, true);
         xhttp.send();
