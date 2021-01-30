@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create new client</title>
@@ -26,6 +26,7 @@
 <script>
 function createClient() {
 var passportId = document.getElementById("passport_id").value;
+
 var clientName = document.getElementById("client_name").value;
 var clientSurname = document.getElementById("client_surname").value;
 var clientAge = document.getElementById("client_age").value;
@@ -39,60 +40,48 @@ xmlhttp.open("POST", "http://localhost:8080/clients/save");
 xmlhttp.setRequestHeader("Content-Type", "application/json");
 xmlhttp.send(JSON.stringify({passportId: passportId, name: clientName, surname: clientSurname, age: clientAge,
 city: clientCity, countOfChildren: clientChildren, salary: clientSalary, creditHistory: clientCredit}));
-updateClients(xmlhttp);
-}
+searchById(passportId);
 
-function updateClients(xmlhttp) {
-alert("Error");
-
-<!--    var status = document.getElementById("status");-->
-<!--    if(xmlhttp.readyState == 4 && xhttp.status == 200) status.innerHTML = "Update";-->
-<!--    else status.innerHTML = "NotUpdate";-->
-
-}
-
-<!--loadClients();-->
-<!--function loadClients() {-->
-<!--var xhttp = new XMLHttpRequest();-->
-<!--xhttp.onreadystatechange = function () {-->
-<!--if (this.readyState == 4 && this.status == 200) {-->
-<!--var clients = JSON.parse(this.responseText);-->
-<!--var html = '<tr>\n' +-->
-<!--    '        <th>Client id</th>\n' +-->
-<!--    '        <th>Client name</th>\n' +-->
-<!--    '        <th>Client surname</th>\n' +-->
-<!--    '        <th>Client age</th>\n' +-->
-<!--    '        <th>Client city</th>\n' +-->
-<!--    '        <th>Client children</th>\n' +-->
-<!--    '        <th>Client salary</th>\n' +-->
-<!--    '        <th>Client credit</th>\n' +-->
-<!--    '        <th>Delete</th>\n' +-->
-<!--    '    </tr>';-->
-<!--for (var i = 0; i < clients.length; i++) {-->
-<!--var client = clients[i];-->
-<!--console.log(client);-->
-<!--html = html + '<tr><td>' + client.passportId + '</td>\n' +-->
-<!--    '        <td>' + client.name + '</td>\n' +-->
-<!--    '        <td>' + client.surname + '</td>\n' +-->
-<!--    '        <td>' + client.age + '</td>' +-->
-<!--    '        <td>' + client.city + '</td>' +-->
-<!--    '        <td>' + client.countOfChildren + '</td>' +-->
-<!--    '        <td>' + client.salary + '</td>' +-->
-<!--    '        <td>' + client.creditHistory + '</td>' +-->
-<!--    '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';-->
-
-<!--}-->
-<!--document.getElementById("clientsList").innerHTML = html;-->
-<!--}-->
-<!--};-->
-<!--xhttp.open("GET", "http://localhost:8080/clients/findAll", true);-->
-<!--xhttp.send();-->
-<!--}-->
-
-<!--loadClients();-->
+};
 
 
 
+
+   function searchById(passportId) {
+<!--        var passportId = document.getElementById("search_id").value;-->
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var client = JSON.parse(this.responseText);
+                var html = '<tr>\n' +
+                    '        <th>Client passport id</th>\n' +
+                    '        <th>Client name</th>\n' +
+                    '        <th>Client surname</th>\n' +
+                    '        <th>Client age</th>\n' +
+                    '        <th>Client city</th>\n' +
+                    '        <th>Client children</th>\n' +
+                    '        <th>Client salary</th>\n' +
+                    '        <th>Client credit</th>\n' +
+                    '        <th>Client status</th>\n' +
+                    '        <th>Delete</th>\n' +
+                    '    </tr>';
+                html = html + '<tr><td>' + client.passportId + '</td>\n' +
+                    '        <td>' + client.name + '</td>\n' +
+                    '        <td>' + client.surname + '</td>\n' +
+                    '        <td>' + client.age + '</td>\n' +
+                    '        <td>' + client.city + '</td>\n' +
+                    '        <td>' + client.countOfChildren + '</td>\n' +
+                    '        <td>' + client.salary + '</td>\n' +
+                    '        <td>' + client.creditHistory + '</td>' +
+                    '        <td bgcolor="#008000">' + client.status + '</td>' +
+                    '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
+
+                document.getElementById("clientsList").innerHTML = html;
+            }
+        };
+        xhttp.open("GET", "http://localhost:8080/clients/findById?passportId=" + passportId, true);
+        xhttp.send();
+    };
 
 </script>
 </body>

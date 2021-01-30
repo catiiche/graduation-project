@@ -47,7 +47,7 @@
             if (this.readyState == 4 && this.status == 200) {
                 var clients = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
-                    '        <th>Client passport id</th>\n' +
+                    '        <th>Passport id</th>\n' +
                     '        <th>Client name</th>\n' +
                     '        <th>Client surname</th>\n' +
                     '        <th>Client age</th>\n' +
@@ -68,7 +68,7 @@
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
-                    '        <td bgcolor="#008000">' + client.status + '</td>' +
+                    '        <td bgcolor="#0000ff">' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
             }
 
@@ -93,7 +93,7 @@
             if (this.readyState == 4 && this.status == 200) {
                 var clients = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
-                    '        <th>Client passport id</th>\n' +
+                    '        <th>Passport id</th>\n' +
                     '        <th>Client name</th>\n' +
                     '        <th>Client surname</th>\n' +
                     '        <th>Client age</th>\n' +
@@ -114,7 +114,7 @@
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
-                    '        <td bgcolor="#008000">' + client.status + '</td>' +
+                    '        <td bgcolor="#0000ff">' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
             }
                 document.getElementById("clientsList").innerHTML = html;
@@ -189,15 +189,15 @@ xhttp.send();
             if (this.readyState == 4 && this.status == 200) {
                 var client = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
-                    '        <th>Client passport id</th>\n' +
-                    '        <th>Client name</th>\n' +
-                    '        <th>Client surname</th>\n' +
-                    '        <th>Client age</th>\n' +
-                    '        <th>Client city</th>\n' +
-                    '        <th>Client children</th>\n' +
-                    '        <th>Client salary</th>\n' +
-                    '        <th>Client credit</th>\n' +
-                    '        <th>Client status</th>\n' +
+                    '        <th>Passport id</th>\n' +
+                    '        <th>Name</th>\n' +
+                    '        <th>Surname</th>\n' +
+                    '        <th>Age</th>\n' +
+                    '        <th>City</th>\n' +
+                    '        <th>Children</th>\n' +
+                    '        <th>Salary</th>\n' +
+                    '        <th>Credit</th>\n' +
+                    '        <th>Status</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
                 html = html + '<tr><td>' + client.passportId + '</td>\n' +
@@ -208,11 +208,11 @@ xhttp.send();
                     '        <td>' + client.countOfChildren + '</td>\n' +
                     '        <td>' + client.salary + '</td>\n' +
                     '        <td>' + client.creditHistory + '</td>' +
-                    '        <td bgcolor="#008000">' + client.status + '</td>' +
+                    '        <td bgcolor="#0000ff">' + client.status + '</td>' +
                     '        <td><button onclick="deleteClient(' + client.passportId + ')">Delete</button></td></tr>';
 
                 document.getElementById("clientsList").innerHTML = html;
-            } else {alert("Error");}
+            }
         };
         xhttp.open("GET", "http://localhost:8080/clients/findById?passportId=" + passportId, true);
         xhttp.send();

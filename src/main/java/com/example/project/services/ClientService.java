@@ -3,7 +3,7 @@ package com.example.project.services;
 import com.example.project.entity.Client;
 import com.example.project.exception.ClientException;
 import com.example.project.repository.ClientRepository;
-import com.example.project.thread.ClientCollections;
+import com.example.project.validation.ClientCollections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

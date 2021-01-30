@@ -1,4 +1,4 @@
-package com.example.project.thread;
+package com.example.project.validation;
 
 import com.example.project.entity.Client;
 
